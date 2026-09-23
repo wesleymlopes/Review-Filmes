@@ -1,0 +1,17 @@
+name: Teste Integração
+on: 
+    workflow_dispatch:  
+jobs:
+    build-test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4
+              with:
+                dotnet-version: 8.0.x
+            - name: Teste de Integração
+              env:
+                ConnectionStrings__DefaultConnection: "Host=localhost;Database=review;Username=review;Password=Passw0rd2023!"
+              run: dotnet test ./src/Review-Filmes.Test.Integration/Review-Filmes.Test.Integration.csproj --verbosity normal 
