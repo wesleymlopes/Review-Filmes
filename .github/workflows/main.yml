@@ -4,6 +4,15 @@ on:
 jobs:
     build-test:
         runs-on: ubuntu-latest
+        services:
+          postgre:
+            image: postgres:16.3
+            env:
+              POSTGRES_PASSWORD: Passw0rd2023!
+              POSTGRES_USER: review
+              POSTGRES_DB: review
+            ports:
+              - 5432:5432
         steps:
             - name: Checkout
               uses: actions/checkout@v4
